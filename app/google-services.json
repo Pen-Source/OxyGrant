@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "929562483962",
+    "firebase_url": "https://xcuseonlinestore.firebaseio.com",
+    "project_id": "xcuseonlinestore",
+    "storage_bucket": "xcuseonlinestore.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929562483962:android:dadee229db6fee8028bd43",
+        "android_client_info": {
+          "package_name": "com.pensource.oxygrant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "929562483962-apc17mvf3def3edk6bpkjehouj0iv3ip.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD41VkQLXhLfaZj_SlrMUJKJNMTfG8PPpo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "929562483962-apc17mvf3def3edk6bpkjehouj0iv3ip.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
