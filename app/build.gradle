@@ -65,7 +65,4 @@ dependencies {
     // Jetpack Navigation Component
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-
-    // Firebase Auth
-    implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
 }
