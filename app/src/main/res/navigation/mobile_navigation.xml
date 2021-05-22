@@ -3,11 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/navigation_home">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/navigation_home"
         android:name="com.pensource.oxygrant.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/navigation_seller"
+            app:destination="@id/sellerFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sellerFragment"
+        android:name="com.pensource.oxygrant.ui.seller.SellerFragment"
+        android:label="fragment_seller"
+        tools:layout="@layout/fragment_seller" />
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.pensource.oxygrant.ui.signin.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_sellerFragment"
+            app:destination="@id/sellerFragment" />
+    </fragment>
 </navigation>

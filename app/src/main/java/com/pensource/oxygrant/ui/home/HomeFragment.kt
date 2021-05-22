@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.pensource.oxygrant.R
 import com.pensource.oxygrant.databinding.FragmentHomeBinding
+import com.pensource.shared.result.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,5 +28,13 @@ class HomeFragment : Fragment() {
             lifecycleOwner = this@HomeFragment
         }
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        homeViewModel.actionSellSupply.observe(viewLifecycleOwner, EventObserver {
+            findNavController().navigate(it)
+        })
     }
 }
