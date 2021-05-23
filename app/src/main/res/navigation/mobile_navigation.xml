@@ -15,7 +15,10 @@
             app:destination="@id/sellerFragment" />
         <action
             android:id="@+id/action_navigation_home_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            app:destination="@id/navigation_signin" />
+        <action
+            android:id="@+id/action_navigation_home_to_findSupplyFragment"
+            app:destination="@id/navigation_find_supply" />
     </fragment>
     <fragment
         android:id="@+id/sellerFragment"
@@ -23,7 +26,7 @@
         android:label="fragment_seller"
         tools:layout="@layout/fragment_seller" />
     <fragment
-        android:id="@+id/signInFragment"
+        android:id="@+id/navigation_signin"
         android:name="com.pensource.oxygrant.ui.signin.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
@@ -31,4 +34,9 @@
             android:id="@+id/action_signInFragment_to_sellerFragment"
             app:destination="@id/sellerFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_find_supply"
+        android:name="com.pensource.oxygrant.ui.consumer.FindSupplyFragment"
+        android:label="fragment_find_supply"
+        tools:layout="@layout/fragment_find_supply" />
 </navigation>

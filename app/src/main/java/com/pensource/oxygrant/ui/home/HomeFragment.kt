@@ -36,5 +36,9 @@ class HomeFragment : Fragment() {
         homeViewModel.actionSellSupply.observe(viewLifecycleOwner, EventObserver {
             findNavController().navigate(it)
         })
+
+        homeViewModel.actionFindSupply.observe(viewLifecycleOwner, EventObserver {
+            findNavController().navigate(it)
+        })
     }
 }

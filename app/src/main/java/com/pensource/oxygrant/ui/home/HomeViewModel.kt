@@ -17,7 +17,16 @@ class HomeViewModel @Inject constructor(
     private val _actionSellSupply = MutableLiveData<Event<NavDirections>>()
     val actionSellSupply: LiveData<Event<NavDirections>> = _actionSellSupply
 
-    fun sellOxygen() {
+    private val _actionFindSupply = MutableLiveData<Event<NavDirections>>()
+    val actionFindSupply: LiveData<Event<NavDirections>> = _actionFindSupply
+
+    fun findSupply() {
+        val action = HomeFragmentDirections
+            .actionNavigationHomeToFindSupplyFragment()
+        _actionFindSupply.value = Event(action)
+    }
+
+    fun sellSupply() {
         // Check if user is signed in
         if (getFirebaseUserUseCase() == null) {
             // User not signed in, go to sign in screen

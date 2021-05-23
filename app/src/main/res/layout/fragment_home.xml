@@ -19,6 +19,7 @@
             android:id="@+id/find_supply_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> viewmodel.findSupply()}"
             android:padding="16dp"
             android:text="@string/button_i_need_oxygen" />
 
@@ -26,6 +27,7 @@
             android:id="@+id/sell_supply_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> viewmodel.sellSupply()}"
             android:padding="16dp"
             android:text="@string/button_i_have_oxygen" />
     </LinearLayout>
