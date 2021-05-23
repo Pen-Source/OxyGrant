@@ -24,7 +24,11 @@
         android:id="@+id/sellerFragment"
         android:name="com.pensource.oxygrant.ui.seller.SellerFragment"
         android:label="fragment_seller"
-        tools:layout="@layout/fragment_seller" />
+        tools:layout="@layout/fragment_seller" >
+        <action
+            android:id="@+id/action_sellerFragment_to_navigation_submit_supply"
+            app:destination="@id/navigation_submit_supply" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_signin"
         android:name="com.pensource.oxygrant.ui.signin.SignInFragment"
@@ -39,4 +43,8 @@
         android:name="com.pensource.oxygrant.ui.consumer.FindSupplyFragment"
         android:label="fragment_find_supply"
         tools:layout="@layout/fragment_find_supply" />
+    <fragment
+        android:id="@+id/navigation_submit_supply"
+        android:name="com.pensource.oxygrant.ui.submit.SubmitSupplyFragment"
+        android:label="SubmitSupplyFragment" />
 </navigation>
