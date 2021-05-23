@@ -8,5 +8,9 @@ data class Supply(
     val quantity: Double,
     val latitude: Float,
     val longitude: Float,
+
+    /**
+     * To show a 'verified' badge
+     */
     val verified: Boolean = false
 )
