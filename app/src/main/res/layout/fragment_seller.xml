@@ -1,18 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.seller.SellerFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/sell_oxygen_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:text="@string/button_add_supply"
-        app:icon="@drawable/ic_baseline_add_24" />
-</FrameLayout>
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.pensource.oxygrant.ui.seller.SellerViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.seller.SellerFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            supplyList="@{viewmodel.supplyList}"
+            viewModel="@{viewmodel}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/sell_oxygen_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="@dimen/fab_bottom_margin"
+            android:clickable="true"
+            android:text="@string/button_add_supply"
+            app:icon="@drawable/ic_baseline_add_24" />
+    </FrameLayout>
+</layout>
