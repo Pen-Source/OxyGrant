@@ -1,6 +1,6 @@
 package com.pensource.model
 
-data class Supplier(
+data class Supply(
     val name: String,
     val phoneNumber: String,
     val isWhatsAppNumber: Boolean,

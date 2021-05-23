@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="supply"
+            type="com.pensource.model.Supply" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/list_item_padding">
+
+        <TextView
+            android:id="@+id/seller_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{supply.name}"
+            tools:text="Supplier Name" />
+
+        <TextView
+            android:id="@+id/seller_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            tools:text="Location" />
+
+        <TextView
+            android:id="@+id/seller_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{supply.phoneNumber}"
+            tools:text="Phone Number" />
+
+        <TextView
+            android:id="@+id/seller_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{`QTY: ` + String.valueOf(supply.quantity)}"
+            tools:text="Quantity" />
+    </LinearLayout>
+</layout>
