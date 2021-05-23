@@ -21,6 +21,7 @@ class HomeViewModel @Inject constructor(
     val actionFindSupply: LiveData<Event<NavDirections>> = _actionFindSupply
 
     fun findSupply() {
+        // Navigate to find supply screen
         val action = HomeFragmentDirections
             .actionNavigationHomeToFindSupplyFragment()
         _actionFindSupply.value = Event(action)
