@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.pensource.oxygrant.R
+import com.pensource.oxygrant.databinding.FragmentSellerBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -14,11 +15,16 @@ class SellerFragment : Fragment() {
 
     private val sellerViewModel: SellerViewModel by viewModels()
 
+    private lateinit var binding: FragmentSellerBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_seller, container, false)
+        binding = FragmentSellerBinding.inflate(inflater, container, false).apply {
+            viewmodel = sellerViewModel
+            lifecycleOwner = this@SellerFragment
+        }
+        return binding.root
     }
 }
