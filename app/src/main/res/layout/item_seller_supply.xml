@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="supply"
             type="com.pensource.model.Supply" />
@@ -46,5 +48,14 @@
             android:layout_height="wrap_content"
             android:text="@{`QTY: ` + String.valueOf(supply.quantity)}"
             tools:text="Quantity" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_baseline_verified_24"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            android:text="VERIFIED SUPPLIER"
+            android:visibility="@{supply.verified ? View.VISIBLE : View.INVISIBLE}" />
     </LinearLayout>
 </layout>
