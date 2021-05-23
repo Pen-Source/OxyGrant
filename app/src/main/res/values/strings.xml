@@ -4,4 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="button_sell_oxygen">SELL OXYGEN</string>
     <string name="button_add_supply">ADD SUPPLY</string>
+    <string name="button_i_need_oxygen">I need Oxygen</string>
+    <string name="button_i_have_oxygen">I have Oxygen</string>
 </resources>
