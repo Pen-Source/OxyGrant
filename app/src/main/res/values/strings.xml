@@ -6,4 +6,10 @@
     <string name="button_add_supply">ADD SUPPLY</string>
     <string name="button_i_need_oxygen">I need Oxygen</string>
     <string name="button_i_have_oxygen">I have Oxygen</string>
+    <string name="user_name">Name</string>
+    <string name="user_phone">Mobile Number</string>
+    <string name="isWhatsApp">Above number is WhatsApp number</string>
+    <string name="quantity">Available Oxygen Quantity</string>
+    <string name="user_location">Location</string>
+    <string name="save">Save</string>
 </resources>
