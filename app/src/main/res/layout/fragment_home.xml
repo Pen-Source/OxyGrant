@@ -33,7 +33,7 @@
             android:layout_margin="8dp"
             android:padding="16dp"
             android:text="@string/button_i_have_oxygen"
-            android:onClick="@{() -> viewmodel.findSupply()}"/>
+            android:onClick="@{() -> viewmodel.sellSupply()}"/>
 
     </LinearLayout>
 </layout>
