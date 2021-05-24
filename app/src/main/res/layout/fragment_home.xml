@@ -13,22 +13,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="8dp">
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/find_supply_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> viewmodel.findSupply()}"
+            android:layout_margin="8dp"
             android:padding="16dp"
-            android:text="@string/button_i_need_oxygen" />
+            android:text="@string/button_i_need_oxygen"
+            android:onClick="@{() -> viewmodel.findSupply()}" />
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/sell_supply_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> viewmodel.sellSupply()}"
+            android:layout_margin="8dp"
             android:padding="16dp"
-            android:text="@string/button_i_have_oxygen" />
+            android:text="@string/button_i_have_oxygen"
+            android:onClick="@{() -> viewmodel.findSupply()}"/>
+
     </LinearLayout>
 </layout>
