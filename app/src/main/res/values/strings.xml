@@ -12,4 +12,5 @@
     <string name="quantity">Available Oxygen Quantity</string>
     <string name="user_location">Location</string>
     <string name="save">Save</string>
+    <string name="whatsapp">WhatsApp</string>
 </resources>
