@@ -14,102 +14,94 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.submit.SubmitSupplyFragment"
-        android:background="@color/purple_700"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="6dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/supplier_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/user_location"
-            app:startIconDrawable="@drawable/ic_location"
-            android:textColorHint="@color/white"
-            app:boxBackgroundColor="@color/purple_500"
-            app:startIconTint="@color/white"
-            android:layout_margin="16dp">
-
-            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/supplier_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="@string/user_name"
+                app:startIconDrawable="@drawable/ic_user"
+                app:startIconContentDescription="@string/user_name"
+                android:layout_margin="6dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="@drawable/layout_bg"
-                android:padding="16dp">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/supplier_name"
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/user_name"
-                    app:startIconDrawable="@drawable/ic_user"
-                    app:startIconContentDescription="@string/user_name"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/supplier_phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/user_phone"
-                    app:startIconDrawable="@drawable/ic_phone"
-                    app:startIconContentDescription="@string/user_phone"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <CheckBox
-                    android:id="@+id/supplier_isWhatsApp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/isWhatsApp"
                     />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/supplier_quantity"
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/supplier_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/user_phone"
+                app:startIconDrawable="@drawable/ic_phone"
+                android:layout_margin="6dp"
+                app:startIconContentDescription="@string/user_phone"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/quantity"
-                    app:startIconContentDescription="@string/quantity"
-                    app:prefixText="litre"
-                    app:suffixTextColor="#000"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                </com.google.android.material.textfield.TextInputLayout>
+            <CheckBox
+                android:id="@+id/supplier_isWhatsApp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layout_margin="6dp"
+                android:text="@string/isWhatsApp"
+                />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/find_supply_button"
-                    android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/supplier_quantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:hint="@string/quantity"
+                app:startIconContentDescription="@string/quantity"
+                app:suffixText="litre"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_gravity="end"
-                    android:text="@string/save" />
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/supplier_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/user_location"
+                android:layout_margin="6dp"
+                app:startIconDrawable="@drawable/ic_location"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/find_supply_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_gravity="end"
+                android:text="@string/save" />
 
             </LinearLayout>
 
-        </LinearLayout>
 
 </layout>
