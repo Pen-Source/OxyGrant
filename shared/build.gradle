@@ -48,6 +48,9 @@ dependencies {
     // Firebase Auth
     api 'com.firebaseui:firebase-ui-auth:6.4.0'
 
+    // Firestore
+    implementation 'com.google.firebase:firebase-firestore:23.0.0'
+
     // Hilt - Dependency injection
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"

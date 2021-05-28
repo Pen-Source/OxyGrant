@@ -1,6 +1,6 @@
 package com.pensource.shared.di
 
-import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.pensource.shared.data.supply.FirebaseSupplyDataSource
 import com.pensource.shared.data.supply.FirebaseSupplyRepository
 import com.pensource.shared.data.supply.SupplyDataSource
@@ -15,15 +15,12 @@ import javax.inject.Singleton
 @Module
 object AppModule {
 
-    @Provides
-    fun provideFirebaseAuth(): FirebaseAuth {
-        return FirebaseAuth.getInstance()
-    }
-
     @Singleton
     @Provides
-    fun provideSupplyDataSource(): SupplyDataSource {
-        return FirebaseSupplyDataSource()
+    fun provideSupplyDataSource(
+        firestore: FirebaseFirestore
+    ): SupplyDataSource {
+        return FirebaseSupplyDataSource(firestore)
     }
 
     @Singleton
