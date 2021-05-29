@@ -28,4 +28,8 @@ object AppModule {
     fun provideSupplyRepository(): SupplyRepository {
         return FirebaseSupplyRepository()
     }
+
+    fun provideFirebaseAuth() {
+
+    }
 }
