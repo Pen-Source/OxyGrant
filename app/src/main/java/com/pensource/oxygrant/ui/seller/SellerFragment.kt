@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.pensource.oxygrant.R
 import com.pensource.oxygrant.databinding.FragmentSellerBinding
 import com.pensource.shared.result.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,6 +31,9 @@ class SellerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Load supply
+        sellerViewModel.loadSupply()
 
         sellerViewModel.actionAddSupply.observe(viewLifecycleOwner, EventObserver {
             findNavController().navigate(it)

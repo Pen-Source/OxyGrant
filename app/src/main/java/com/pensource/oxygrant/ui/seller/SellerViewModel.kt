@@ -23,17 +23,19 @@ class SellerViewModel @Inject constructor(
     private val _actionAddSupply = MutableLiveData<Event<NavDirections>>()
     val actionAddSupply: LiveData<Event<NavDirections>> = _actionAddSupply
 
-    private val _supplyList = MutableLiveData<List<Supply>>().apply {
+    private val _supplyList = MutableLiveData<List<Supply>>()
+    val supplyList: LiveData<List<Supply>> = _supplyList
+
+    fun loadSupply() {
         viewModelScope.launch {
             val userId = getFirebaseUserUseCase()?.uid ?: return@launch
             when (val result = getCurrentUserSupplyUseCase(userId)) {
                 is Result.Success -> {
-                    value = result.data
+                    _supplyList.value = result.data
                 }
             }
         }
     }
-    val supplyList: LiveData<List<Supply>> = _supplyList
 
     fun addSupply() {
         val action = SellerFragmentDirections
