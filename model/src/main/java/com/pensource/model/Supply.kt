@@ -8,9 +8,25 @@ data class Supply(
      */
     val supplierUserId: String,
 
+    /**
+     * Name of the supplier
+     */
     val name: String,
+
+    /**
+     * Contact number of the supplier
+     */
     val phoneNumber: String,
+
+    /**
+     * Indicate weather the number provided can
+     * be contacted via WhatsApp
+     */
     val isWhatsAppNumber: Boolean,
+
+    /**
+     * Quantity of the supply
+     */
     val quantity: Double,
 
     /**
