@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.pensource.oxygrant.R
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.pensource.oxygrant.databinding.FragmentSubmitSupplyBinding
+import com.pensource.shared.result.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,10 +23,19 @@ class SubmitSupplyFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSubmitSupplyBinding.inflate(inflater, container, false).apply { 
+        binding = FragmentSubmitSupplyBinding.inflate(inflater, container, false).apply {
             viewmodel = submitViewModel
             lifecycleOwner = this@SubmitSupplyFragment
         }
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        submitViewModel.actionSubmissionSuccess.observe(viewLifecycleOwner, EventObserver {
+            Snackbar.make(binding.root, "Supply Submitted", Snackbar.LENGTH_SHORT).show()
+            findNavController().navigateUp()
+        })
     }
 }
