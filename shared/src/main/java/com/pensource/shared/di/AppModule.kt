@@ -25,8 +25,8 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideSupplyRepository(): SupplyRepository {
-        return FirebaseSupplyRepository()
+    fun provideSupplyRepository(supplyDataSource: SupplyDataSource): SupplyRepository {
+        return FirebaseSupplyRepository(supplyDataSource)
     }
 
     fun provideFirebaseAuth() {
