@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pensource.model.Supply
+import com.pensource.shared.domain.auth.GetFirebaseUserUseCase
 import com.pensource.shared.domain.supply.SubmitSupplyUseCase
 import com.pensource.shared.result.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SubmitViewModel @Inject constructor(
-    private val sellSupplyUseCase: SubmitSupplyUseCase
+    private val sellSupplyUseCase: SubmitSupplyUseCase,
+    private val getFirebaseUserUseCase: GetFirebaseUserUseCase
 ) : ViewModel() {
 
     val name = MutableLiveData("")
@@ -27,6 +29,7 @@ class SubmitViewModel @Inject constructor(
         viewModelScope.launch {
             val supply = Supply(
                 id = null,
+                supplierUserId = getFirebaseUserUseCase()?.uid ?: return@launch,
                 name = name.value ?: "",
                 phoneNumber = contactNumber.value ?: "",
                 isWhatsAppNumber = isWhatsAppNumber.value ?: false,

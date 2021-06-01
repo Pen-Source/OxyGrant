@@ -44,6 +44,7 @@ class FirebaseSupplyDataSource @Inject constructor(
     fun parseSupply(snapshot: DocumentSnapshot): Supply {
         return Supply(
             id = snapshot.id,
+            supplierUserId = snapshot[SUPPLIER_USER_ID] as String,
             name = snapshot[NAME] as String? ?: "N/A",
             phoneNumber = snapshot[CONTACT_NUMBER] as String? ?: "N/A",
             isWhatsAppNumber = snapshot[IS_WHATS_APP_NUMBER] as Boolean? ?: false,
@@ -56,7 +57,8 @@ class FirebaseSupplyDataSource @Inject constructor(
 
     companion object {
         const val SUPPLY = "supply"
-        const val ID = "supplyId"
+        const val SUPPLY_ID = "supplyId"
+        const val SUPPLIER_USER_ID = "supplierUserId"
         const val NAME = "name"
         const val CONTACT_NUMBER = "contactNumber"
         const val IS_WHATS_APP_NUMBER = "isWhatsAppNumber"
