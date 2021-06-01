@@ -30,7 +30,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    />
+                    android:text="@={viewmodel.name}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -48,7 +48,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    />
+                    android:text="@={viewmodel.contactNumber}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,7 +74,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    />
+                    android:text="@={viewmodel.supplyQuantity}"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,7 +99,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:layout_gravity="end"
-                android:text="@string/save" />
+                android:text="@string/save"
+                android:onClick="@{() -> viewmodel.submit()}"/>
 
             </LinearLayout>
 
