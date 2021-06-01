@@ -36,7 +36,9 @@
         tools:layout="@layout/fragment_sign_in" >
         <action
             android:id="@+id/action_signInFragment_to_sellerFragment"
-            app:destination="@id/sellerFragment" />
+            app:destination="@id/sellerFragment"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/navigation_find_supply"
