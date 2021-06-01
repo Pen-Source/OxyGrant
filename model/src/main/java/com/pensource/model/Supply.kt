@@ -10,6 +10,11 @@ data class Supply(
     val longitude: Float,
 
     /**
+     * Additional info
+     */
+    val note: String = "",
+
+    /**
      * To show a 'verified' badge
      */
     val verified: Boolean = false
