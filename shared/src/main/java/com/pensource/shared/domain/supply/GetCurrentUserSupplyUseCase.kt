@@ -17,10 +17,10 @@ class GetCurrentUserSupplyUseCase @Inject constructor(
     suspend operator fun invoke(userId: String): Result<List<Supply>> = withContext(dispatcher) {
         val result = try {
             supplyDataSource.findSupply(
-                mapOf(
-                    FirebaseSupplyDataSource.SUPPLIER_USER_ID to userId
-                )
-            )
+                mapOf(FirebaseSupplyDataSource.SUPPLIER_USER_ID to userId)
+            ).sortedByDescending {
+                it.submitTime
+            }
         } catch (e: Exception) {
             return@withContext Result.Error(e)
         }
