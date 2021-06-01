@@ -41,11 +41,13 @@ class FirebaseSupplyDataSource @Inject constructor(
     }
 
     override fun findSupply(filter: Map<String, String>?): List<Supply> {
-        val task = firestore.collection(SUPPLY).apply {
-            filter?.forEach {
-                whereEqualTo(it.key, it.value)
-            }
-        }.get()
+        var query = firestore.collection(SUPPLY).limit(100)
+
+        filter?.forEach {
+            query = query.whereEqualTo(it.key, it.value)
+        }
+
+        val task = query.get()
 
         val snapshot = Tasks.await(task, 20, TimeUnit.SECONDS)
         return snapshot.documents.map { parseSupply(it) }
