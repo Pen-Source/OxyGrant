@@ -12,7 +12,7 @@ interface SupplyDataSource {
 
     fun sellSupply(supply: Supply): DocumentReference
 
-    fun findSupply(lat: Long, lng: Long): List<Supply>
+    fun findSupply(filter: Map<String, String>? = null): List<Supply>
 }
 
 class FirebaseSupplyDataSource @Inject constructor(
@@ -37,11 +37,18 @@ class FirebaseSupplyDataSource @Inject constructor(
         return Tasks.await(task, 20, TimeUnit.SECONDS)
     }
 
-    override fun findSupply(lat: Long, lng: Long): List<Supply> {
-        TODO("Not yet implemented")
+    override fun findSupply(filter: Map<String, String>?): List<Supply> {
+        val task = firestore.collection(SUPPLY).apply {
+            filter?.forEach {
+                whereEqualTo(it.key, it.value)
+            }
+        }.get()
+
+        val snapshot = Tasks.await(task, 20, TimeUnit.SECONDS)
+        return snapshot.documents.map { parseSupply(it) }
     }
 
-    fun parseSupply(snapshot: DocumentSnapshot): Supply {
+    private fun parseSupply(snapshot: DocumentSnapshot): Supply {
         return Supply(
             id = snapshot.id,
             supplierUserId = snapshot[SUPPLIER_USER_ID] as String,

@@ -8,7 +8,7 @@ interface SupplyRepository {
 
     fun sellSupply(supply: Supply): DocumentReference
 
-    fun findSupply(lat: Long, lng: Long): List<Supply>
+    fun findSupply(filter: Map<String, String>? = null): List<Supply>
 }
 
 class FirebaseSupplyRepository @Inject constructor(
@@ -19,7 +19,7 @@ class FirebaseSupplyRepository @Inject constructor(
         return supplyDataSource.sellSupply(supply)
     }
 
-    override fun findSupply(lat: Long, lng: Long): List<Supply> {
-        TODO("Not yet implemented")
+    override fun findSupply(filter: Map<String, String>?): List<Supply> {
+        return supplyDataSource.findSupply(filter)
     }
 }
