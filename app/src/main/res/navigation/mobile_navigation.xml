@@ -48,5 +48,11 @@
     <fragment
         android:id="@+id/navigation_submit_supply"
         android:name="com.pensource.oxygrant.ui.submit.SubmitSupplyFragment"
-        android:label="SubmitSupplyFragment" />
+        android:label="SubmitSupplyFragment">
+        <argument
+            android:name="supply"
+            android:defaultValue="@null"
+            app:argType="com.pensource.model.Supply"
+            app:nullable="true" />
+    </fragment>
 </navigation>

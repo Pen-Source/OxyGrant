@@ -1,5 +1,7 @@
 package com.pensource.model
 
+import java.io.Serializable
+
 data class Supply(
     val id: String?,
 
@@ -51,4 +53,4 @@ data class Supply(
      * To show a 'verified' badge
      */
     val verified: Boolean = false
-)
+) : Serializable

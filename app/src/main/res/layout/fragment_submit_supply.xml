@@ -52,6 +52,7 @@
                 app:startIconDrawable="@drawable/ic_user">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/name_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@={viewmodel.name}" />
@@ -69,6 +70,7 @@
                 app:startIconDrawable="@drawable/ic_phone">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mobile_number_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@={viewmodel.contactNumber}" />
@@ -93,6 +95,7 @@
                 app:suffixTextColor="#000">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/quantity_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@={viewmodel.supplyQuantity}" />

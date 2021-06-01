@@ -43,4 +43,11 @@ class SellerViewModel @Inject constructor(
 
         _actionAddSupply.value = Event(action)
     }
+
+    fun editSupply(supply: Supply) {
+        val action = SellerFragmentDirections
+            .actionSellerFragmentToNavigationSubmitSupply(supply)
+
+        _actionAddSupply.value = Event(action)
+    }
 }

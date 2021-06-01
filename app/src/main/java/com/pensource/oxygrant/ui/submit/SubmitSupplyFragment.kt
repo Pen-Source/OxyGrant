@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.pensource.oxygrant.databinding.FragmentSubmitSupplyBinding
 import com.pensource.shared.result.EventObserver
@@ -14,9 +15,11 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SubmitSupplyFragment : Fragment() {
-    
+
     private val submitViewModel: SubmitViewModel by viewModels()
-    
+
+    private val args: SubmitSupplyFragmentArgs by navArgs()
+
     private lateinit var binding: FragmentSubmitSupplyBinding
 
     override fun onCreateView(
