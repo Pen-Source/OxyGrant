@@ -57,4 +57,7 @@ dependencies {
 
     // Coroutines
     api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3")
+
+    // Timber
+    api 'com.jakewharton.timber:timber:4.7.1'
 }

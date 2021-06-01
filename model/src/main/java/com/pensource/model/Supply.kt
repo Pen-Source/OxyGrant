@@ -39,8 +39,8 @@ data class Supply(
      */
     val updateTime: Long? = null,
 
-    val latitude: Float,
-    val longitude: Float,
+    val latitude: Double,
+    val longitude: Double,
 
     /**
      * Additional info

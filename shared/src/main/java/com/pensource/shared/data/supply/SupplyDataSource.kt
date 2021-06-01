@@ -24,10 +24,13 @@ class FirebaseSupplyDataSource @Inject constructor(
             .collection(SUPPLY)
             .add(
                 mapOf(
+                    SUPPLIER_USER_ID to supply.supplierUserId,
                     NAME to supply.name,
                     CONTACT_NUMBER to supply.phoneNumber,
                     IS_WHATS_APP_NUMBER to supply.isWhatsAppNumber,
                     SUPPLY_QUANTITY to supply.quantity,
+                    SUBMIT_TIME to supply.submitTime,
+                    UPDATE_TIME to supply.updateTime,
                     LATITUDE to supply.latitude,
                     LONGITUDE to supply.longitude,
                     NOTE to supply.note
@@ -38,11 +41,13 @@ class FirebaseSupplyDataSource @Inject constructor(
     }
 
     override fun findSupply(filter: Map<String, String>?): List<Supply> {
-        val task = firestore.collection(SUPPLY).apply {
-            filter?.forEach {
-                whereEqualTo(it.key, it.value)
-            }
-        }.get()
+        val task = firestore.collection(SUPPLY)
+//            .apply {
+//                filter?.forEach {
+//                    whereEqualTo(it.key, it.value)
+//                }
+//            }
+            .get()
 
         val snapshot = Tasks.await(task, 20, TimeUnit.SECONDS)
         return snapshot.documents.map { parseSupply(it) }
@@ -56,9 +61,12 @@ class FirebaseSupplyDataSource @Inject constructor(
             phoneNumber = snapshot[CONTACT_NUMBER] as String? ?: "N/A",
             isWhatsAppNumber = snapshot[IS_WHATS_APP_NUMBER] as Boolean? ?: false,
             quantity = snapshot[SUPPLY_QUANTITY] as Double? ?: 0.0,
-            latitude = snapshot[LATITUDE] as Float? ?: 0f,
-            longitude = snapshot[LONGITUDE] as Float? ?: 0f,
-            note = snapshot[NOTE] as String? ?: ""
+            latitude = snapshot[LATITUDE] as Double? ?: 0.0,
+            longitude = snapshot[LONGITUDE] as Double? ?: 0.0,
+            note = snapshot[NOTE] as String? ?: "",
+            submitTime = snapshot[SUBMIT_TIME] as Long? ?: 0,
+            updateTime = snapshot[UPDATE_TIME] as Long? ?: 0,
+            verified = snapshot[IS_VERIFIED] as Boolean? ?: false
         )
     }
 
@@ -70,8 +78,11 @@ class FirebaseSupplyDataSource @Inject constructor(
         const val CONTACT_NUMBER = "contactNumber"
         const val IS_WHATS_APP_NUMBER = "isWhatsAppNumber"
         const val SUPPLY_QUANTITY = "supplyQuantity"
+        const val SUBMIT_TIME = "submitTime"
+        const val UPDATE_TIME = "updateTime"
         const val LATITUDE = "latitude"
         const val LONGITUDE = "longitude"
         const val NOTE = "note"
+        const val IS_VERIFIED = "isVerified"
     }
 }
