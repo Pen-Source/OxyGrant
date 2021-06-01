@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -11,20 +12,14 @@
             name="supply"
             type="com.pensource.model.Supply" />
 
-        <variable
-            name="viewmodel"
-            type="com.pensource.oxygrant.ui.seller.SellerViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:onClick="@{() -> viewmodel.editSupply(supply)}"
-        app:cardCornerRadius="5dp"
+        android:layout_margin="8dp"
         app:cardElevation="8dp"
+        app:cardCornerRadius="5dp"
         app:cardMaxElevation="12dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true">
@@ -39,46 +34,66 @@
                 android:id="@+id/seller_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="1dp"
                 android:text="@{supply.name}"
-                tools:text="Supplier Name" />
+                tools:text="Supplier Name"
+                android:layout_margin="1dp"/>
 
             <TextView
                 android:id="@+id/seller_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="1dp"
                 android:text="Location"
-                tools:text="Location" />
+                tools:text="Location"
+                android:layout_margin="1dp"/>
 
-            <TextView
-                android:id="@+id/seller_phone_number"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:text="@{supply.phoneNumber}"
-                tools:text="Phone Number" />
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/seller_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Phone Number"
+                    android:layout_toStartOf="@id/button_whatsapp"/>
+
+
+                <ImageButton
+                    android:id="@+id/button_whatsapp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:contentDescription="@string/whatsapp"
+                    android:src="@drawable/ic_whatsapp"
+                    android:visibility="visible"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+
+
 
             <TextView
                 android:id="@+id/seller_quantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="1dp"
                 android:text="@{`QTY: ` + String.valueOf(supply.quantity)}"
-                tools:text="Quantity" />
+                tools:text="Quantity"
+                android:layout_margin="1dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="1dp"
                 android:drawableStart="@drawable/ic_baseline_verified_24"
                 android:drawablePadding="4dp"
                 android:gravity="center_vertical"
                 android:text="VERIFIED SUPPLIER"
-                android:visibility="@{supply.verified ? View.VISIBLE : View.INVISIBLE}" />
+                android:visibility="@{supply.verified ? View.VISIBLE : View.INVISIBLE}"
+
+                android:layout_margin="1dp"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-
 
 </layout>
