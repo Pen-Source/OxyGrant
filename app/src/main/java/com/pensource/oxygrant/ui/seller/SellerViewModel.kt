@@ -19,7 +19,7 @@ class SellerViewModel @Inject constructor() : ViewModel() {
         // Load fake supply data for testing list view
         value = listOf(
             Supply("abc", "Supplier 1", "1234567890", false, quantity = 50.0, 0f, 0f),
-            Supply("abc", "Supplier 1", "1234567890", true, quantity = 50.0, 0f, 0f, true)
+            Supply("abc", "Supplier 1", "1234567890", true, quantity = 50.0, 0f, 0f, "", true)
         )
     }
     val supplyList: LiveData<List<Supply>> = _supplyList

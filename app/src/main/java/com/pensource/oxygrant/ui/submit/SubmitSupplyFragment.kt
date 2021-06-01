@@ -20,11 +20,11 @@ class SubmitSupplyFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSubmitSupplyBinding.inflate(inflater, container, false).apply { 
             viewmodel = submitViewModel
             lifecycleOwner = this@SubmitSupplyFragment
         }
-        return inflater.inflate(R.layout.fragment_submit_supply, container, false)
+        return binding.root
     }
 }
