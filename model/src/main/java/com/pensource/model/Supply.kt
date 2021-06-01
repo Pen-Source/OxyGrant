@@ -12,6 +12,17 @@ data class Supply(
     val phoneNumber: String,
     val isWhatsAppNumber: Boolean,
     val quantity: Double,
+
+    /**
+     * Time when the supply is submitted
+     */
+    val submitTime: Long,
+
+    /**
+     * Latest update time
+     */
+    val updateTime: Long? = null,
+
     val latitude: Float,
     val longitude: Float,
 
