@@ -29,14 +29,14 @@ class HomeViewModel @Inject constructor(
 
     fun sellSupply() {
         // Check if user is signed in
-//        if (getFirebaseUserUseCase() == null) {
-//            // User not signed in, go to sign in screen
-//            val action = HomeFragmentDirections.actionNavigationHomeToSignInFragment()
-//            _actionSellSupply.value = Event(action)
-//        } else {
+        if (getFirebaseUserUseCase() == null) {
+            // User not signed in, go to sign in screen
+            val action = HomeFragmentDirections.actionNavigationHomeToSignInFragment()
+            _actionSellSupply.value = Event(action)
+        } else {
             // User signed in, go to add supply screen
             val action = HomeFragmentDirections.navigationSeller()
             _actionSellSupply.value = Event(action)
-//        }
+        }
     }
 }
