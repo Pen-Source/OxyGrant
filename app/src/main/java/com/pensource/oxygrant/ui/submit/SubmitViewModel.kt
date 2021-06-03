@@ -10,15 +10,18 @@ import com.pensource.shared.domain.auth.GetFirebaseUserUseCase
 import com.pensource.shared.domain.supply.SubmitSupplyUseCase
 import com.pensource.shared.result.Event
 import com.pensource.shared.result.Result
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
-class SubmitViewModel @Inject constructor(
+class SubmitViewModel @AssistedInject constructor(
     private val sellSupplyUseCase: SubmitSupplyUseCase,
     private val getFirebaseUserUseCase: GetFirebaseUserUseCase,
-    private val timeUtil: TimeUtil
+    private val timeUtil: TimeUtil,
+    @Assisted private val supply: Supply
 ) : ViewModel() {
 
     private val _actionSubmissionSuccess = MutableLiveData<Event<Unit>>()
@@ -58,4 +61,9 @@ class SubmitViewModel @Inject constructor(
             }
         }
     }
+}
+
+@AssistedFactory
+interface SubmitViewModelFactory {
+    fun create(supply: Supply): SubmitViewModel
 }

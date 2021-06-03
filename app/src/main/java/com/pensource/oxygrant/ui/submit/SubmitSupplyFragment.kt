@@ -12,13 +12,17 @@ import com.google.android.material.snackbar.Snackbar
 import com.pensource.oxygrant.databinding.FragmentSubmitSupplyBinding
 import com.pensource.shared.result.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SubmitSupplyFragment : Fragment() {
 
-    private val submitViewModel: SubmitViewModel by viewModels()
-
     private val args: SubmitSupplyFragmentArgs by navArgs()
+
+    @Inject
+    lateinit var submitViewModelFactory: SubmitViewModelFactory
+
+    private val submitViewModel: SubmitViewModel by viewModels()
 
     private lateinit var binding: FragmentSubmitSupplyBinding
 
