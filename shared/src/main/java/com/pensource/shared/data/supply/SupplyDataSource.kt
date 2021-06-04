@@ -15,6 +15,8 @@ interface SupplyDataSource {
     fun updateSupply(supply: Supply)
 
     fun findSupply(filter: Map<String, String>? = null): List<Supply>
+
+    fun deleteSupply(id: String)
 }
 
 class FirebaseSupplyDataSource @Inject constructor(
@@ -51,6 +53,15 @@ class FirebaseSupplyDataSource @Inject constructor(
 
         val snapshot = Tasks.await(task, 20, TimeUnit.SECONDS)
         return snapshot.documents.map { parseSupply(it) }
+    }
+
+    override fun deleteSupply(id: String) {
+        val task = firestore
+            .collection(SUPPLY)
+            .document(id)
+            .delete()
+
+        Tasks.await(task, 20, TimeUnit.SECONDS)
     }
 
     private fun parseSupply(snapshot: DocumentSnapshot): Supply {

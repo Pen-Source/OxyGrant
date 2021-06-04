@@ -11,6 +11,8 @@ interface SupplyRepository {
     fun updateSupply(supply: Supply)
 
     fun findSupply(filter: Map<String, String>? = null): List<Supply>
+
+    fun deleteSupply(id: String)
 }
 
 class FirebaseSupplyRepository @Inject constructor(
@@ -27,5 +29,9 @@ class FirebaseSupplyRepository @Inject constructor(
 
     override fun findSupply(filter: Map<String, String>?): List<Supply> {
         return supplyDataSource.findSupply(filter)
+    }
+
+    override fun deleteSupply(id: String) {
+        supplyDataSource.deleteSupply(id)
     }
 }
