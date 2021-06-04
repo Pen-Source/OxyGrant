@@ -5,6 +5,7 @@ import com.pensource.model.Supply
 import com.pensource.oxygrant.util.TimeUtil
 import com.pensource.shared.domain.auth.GetFirebaseUserUseCase
 import com.pensource.shared.domain.supply.SubmitSupplyUseCase
+import com.pensource.shared.domain.supply.UpdateSupplyUseCase
 import com.pensource.shared.result.Event
 import com.pensource.shared.result.Result
 import dagger.assisted.Assisted
@@ -15,6 +16,7 @@ import kotlinx.coroutines.launch
 class SubmitViewModel @AssistedInject constructor(
     private val sellSupplyUseCase: SubmitSupplyUseCase,
     private val getFirebaseUserUseCase: GetFirebaseUserUseCase,
+    private val updateSupplyUseCase: UpdateSupplyUseCase,
     private val timeUtil: TimeUtil,
     @Assisted private val supply: Supply?
 ) : ViewModel() {
@@ -42,7 +44,7 @@ class SubmitViewModel @AssistedInject constructor(
     fun submit() {
         viewModelScope.launch {
             val supply = Supply(
-                id = null,
+                id = supply?.id,
                 supplierUserId = getFirebaseUserUseCase()?.uid ?: return@launch,
                 name = name.value ?: "",
                 phoneNumber = contactNumber.value ?: "",
@@ -53,13 +55,21 @@ class SubmitViewModel @AssistedInject constructor(
                 submitTime = timeUtil.getCurrentTime()
             )
 
-            when (val result = sellSupplyUseCase(supply)) {
-                is Result.Success -> {
-                    _actionSubmissionSuccess.postValue(Event(Unit))
+            val isUpdate = isUpdate.value ?: false
+
+            if (isUpdate) {
+                // Update existing supply
+                when (val result = updateSupplyUseCase(supply)) {
+                    is Result.Success -> {
+                        _actionSubmissionSuccess.postValue(Event(Unit))
+                    }
                 }
-
-                is Result.Error -> {
-
+            } else {
+                // Submit new supply
+                when (val result = sellSupplyUseCase(supply)) {
+                    is Result.Success -> {
+                        _actionSubmissionSuccess.postValue(Event(Unit))
+                    }
                 }
             }
         }
