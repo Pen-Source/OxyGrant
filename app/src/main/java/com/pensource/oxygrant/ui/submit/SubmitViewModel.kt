@@ -49,7 +49,8 @@ class SubmitViewModel @AssistedInject constructor(
                 name = name.value ?: "",
                 phoneNumber = contactNumber.value ?: "",
                 isWhatsAppNumber = isWhatsAppNumber.value ?: false,
-                quantity = supplyQuantity.value?.toDouble() ?: 0.0,
+                quantity = supplyQuantity.value?.toDouble()
+                    ?: 0.0, // TODO: 04-06-2021 Handle number format exception
                 latitude = 0.0,
                 longitude = 0.0,
                 submitTime = timeUtil.getCurrentTime()
