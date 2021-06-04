@@ -70,7 +70,7 @@ class FirebaseSupplyDataSource @Inject constructor(
         )
     }
 
-    private fun Supply.toMap(): Map<String, Any> {
+    private fun Supply.toMap(): Map<String, Any?> {
         return mapOf(
             SUPPLIER_USER_ID to supplierUserId,
             NAME to name,
@@ -78,7 +78,7 @@ class FirebaseSupplyDataSource @Inject constructor(
             IS_WHATS_APP_NUMBER to isWhatsAppNumber,
             SUPPLY_QUANTITY to quantity,
             SUBMIT_TIME to submitTime,
-            UPDATE_TIME to updateTime as Long,
+            UPDATE_TIME to updateTime,
             LATITUDE to latitude,
             LONGITUDE to longitude,
             NOTE to note
