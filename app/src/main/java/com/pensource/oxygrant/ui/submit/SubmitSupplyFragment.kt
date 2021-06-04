@@ -42,8 +42,8 @@ class SubmitSupplyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        submitViewModel.actionSubmissionSuccess.observe(viewLifecycleOwner, EventObserver {
-            Snackbar.make(binding.root, "Supply Submitted", Snackbar.LENGTH_SHORT).show()
+        submitViewModel.actionSuccess.observe(viewLifecycleOwner, EventObserver {
+            Snackbar.make(binding.root, "Success", Snackbar.LENGTH_SHORT).show()
             findNavController().navigateUp()
         })
     }

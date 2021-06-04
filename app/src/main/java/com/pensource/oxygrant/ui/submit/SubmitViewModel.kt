@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.pensource.model.Supply
 import com.pensource.oxygrant.util.TimeUtil
 import com.pensource.shared.domain.auth.GetFirebaseUserUseCase
+import com.pensource.shared.domain.supply.DeleteSupplyUseCase
 import com.pensource.shared.domain.supply.SubmitSupplyUseCase
 import com.pensource.shared.domain.supply.UpdateSupplyUseCase
 import com.pensource.shared.result.Event
@@ -17,12 +18,13 @@ class SubmitViewModel @AssistedInject constructor(
     private val sellSupplyUseCase: SubmitSupplyUseCase,
     private val getFirebaseUserUseCase: GetFirebaseUserUseCase,
     private val updateSupplyUseCase: UpdateSupplyUseCase,
+    private val deleteSupplyUseCase: DeleteSupplyUseCase,
     private val timeUtil: TimeUtil,
     @Assisted private val supply: Supply?
 ) : ViewModel() {
 
-    private val _actionSubmissionSuccess = MutableLiveData<Event<Unit>>()
-    val actionSubmissionSuccess: LiveData<Event<Unit>> = _actionSubmissionSuccess
+    private val _actionSuccess = MutableLiveData<Event<Unit>>()
+    val actionSuccess: LiveData<Event<Unit>> = _actionSuccess
 
     /*
     * If the provided supply from previous screen is not null, this is an edit screen
@@ -62,14 +64,14 @@ class SubmitViewModel @AssistedInject constructor(
                 // Update existing supply
                 when (val result = updateSupplyUseCase(supply)) {
                     is Result.Success -> {
-                        _actionSubmissionSuccess.postValue(Event(Unit))
+                        _actionSuccess.postValue(Event(Unit))
                     }
                 }
             } else {
                 // Submit new supply
                 when (val result = sellSupplyUseCase(supply)) {
                     is Result.Success -> {
-                        _actionSubmissionSuccess.postValue(Event(Unit))
+                        _actionSuccess.postValue(Event(Unit))
                     }
                 }
             }
@@ -77,7 +79,15 @@ class SubmitViewModel @AssistedInject constructor(
     }
 
     fun delete() {
-
+        viewModelScope.launch {
+            supply?.id?.let {
+                when (val result = deleteSupplyUseCase(it)) {
+                    is Result.Success -> {
+                        _actionSuccess.value = Event(Unit)
+                    }
+                }
+            }
+        }
     }
 
     companion object {
