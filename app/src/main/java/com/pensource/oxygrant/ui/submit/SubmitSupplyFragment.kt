@@ -22,7 +22,9 @@ class SubmitSupplyFragment : Fragment() {
     @Inject
     lateinit var submitViewModelFactory: SubmitViewModelFactory
 
-    private val submitViewModel: SubmitViewModel by viewModels()
+    private val submitViewModel: SubmitViewModel by viewModels {
+        SubmitViewModel.provideFactory(submitViewModelFactory, args.supply)
+    }
 
     private lateinit var binding: FragmentSubmitSupplyBinding
 

@@ -1,9 +1,6 @@
 package com.pensource.oxygrant.ui.submit
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.pensource.model.Supply
 import com.pensource.oxygrant.util.TimeUtil
 import com.pensource.shared.domain.auth.GetFirebaseUserUseCase
@@ -13,28 +10,34 @@ import com.pensource.shared.result.Result
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 
-@HiltViewModel
 class SubmitViewModel @AssistedInject constructor(
     private val sellSupplyUseCase: SubmitSupplyUseCase,
     private val getFirebaseUserUseCase: GetFirebaseUserUseCase,
     private val timeUtil: TimeUtil,
-    @Assisted private val supply: Supply
+    @Assisted private val supply: Supply?
 ) : ViewModel() {
 
     private val _actionSubmissionSuccess = MutableLiveData<Event<Unit>>()
     val actionSubmissionSuccess: LiveData<Event<Unit>> = _actionSubmissionSuccess
 
+    /*
+    * If the provided supply from previous screen is not null, this is an edit screen
+    * If isUpdate is true, we can make delete button visible and change
+    * submit button text to update
+    * */
+    private val _isUpdate = MutableLiveData(supply != null)
+    val isUpdate: LiveData<Boolean> = _isUpdate
 
-    val name = MutableLiveData("")
 
-    val contactNumber = MutableLiveData("")
+    val name = MutableLiveData(supply?.name ?: "")
 
-    val isWhatsAppNumber = MutableLiveData<Boolean>()
+    val contactNumber = MutableLiveData(supply?.phoneNumber ?: "")
 
-    val supplyQuantity = MutableLiveData<String>()
+    val isWhatsAppNumber = MutableLiveData(supply?.isWhatsAppNumber ?: false)
+
+    val supplyQuantity = MutableLiveData(supply?.quantity?.toString() ?: "")
 
     fun submit() {
         viewModelScope.launch {
@@ -61,9 +64,21 @@ class SubmitViewModel @AssistedInject constructor(
             }
         }
     }
+
+    companion object {
+        fun provideFactory(
+            submitViewModelFactory: SubmitViewModelFactory,
+            supply: Supply? = null
+        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+            @Suppress("UNCHECKED_CAST")
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                return submitViewModelFactory.create(supply) as T
+            }
+        }
+    }
 }
 
 @AssistedFactory
 interface SubmitViewModelFactory {
-    fun create(supply: Supply): SubmitViewModel
+    fun create(supply: Supply?): SubmitViewModel
 }
