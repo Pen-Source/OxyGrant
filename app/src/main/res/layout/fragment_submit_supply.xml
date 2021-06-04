@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewmodel"
             type="com.pensource.oxygrant.ui.submit.SubmitViewModel" />
@@ -104,6 +106,16 @@
             android:onClick="@{() -> viewmodel.submit()}"
             android:text="@{viewmodel.isUpdate ? `UPDATE` : `SUBMIT`}"
             tools:text="SUBMIT" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="8dp"
+            android:onClick="@{() -> viewmodel.delete()}"
+            android:text="DELETE"
+            android:visibility="@{viewmodel.isUpdate ? View.VISIBLE : View.GONE}" />
 
     </LinearLayout>
 

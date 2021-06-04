@@ -76,6 +76,10 @@ class SubmitViewModel @AssistedInject constructor(
         }
     }
 
+    fun delete() {
+
+    }
+
     companion object {
         fun provideFactory(
             submitViewModelFactory: SubmitViewModelFactory,
