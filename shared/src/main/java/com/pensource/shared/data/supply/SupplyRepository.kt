@@ -8,6 +8,8 @@ interface SupplyRepository {
 
     fun sellSupply(supply: Supply): DocumentReference
 
+    fun updateSupply(supply: Supply)
+
     fun findSupply(filter: Map<String, String>? = null): List<Supply>
 }
 
@@ -17,6 +19,10 @@ class FirebaseSupplyRepository @Inject constructor(
 
     override fun sellSupply(supply: Supply): DocumentReference {
         return supplyDataSource.sellSupply(supply)
+    }
+
+    override fun updateSupply(supply: Supply) {
+        supplyDataSource.updateSupply(supply)
     }
 
     override fun findSupply(filter: Map<String, String>?): List<Supply> {

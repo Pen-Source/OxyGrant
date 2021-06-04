@@ -12,6 +12,8 @@ interface SupplyDataSource {
 
     fun sellSupply(supply: Supply): DocumentReference
 
+    fun updateSupply(supply: Supply)
+
     fun findSupply(filter: Map<String, String>? = null): List<Supply>
 }
 
@@ -22,22 +24,20 @@ class FirebaseSupplyDataSource @Inject constructor(
     override fun sellSupply(supply: Supply): DocumentReference {
         val task = firestore
             .collection(SUPPLY)
-            .add(
-                mapOf(
-                    SUPPLIER_USER_ID to supply.supplierUserId,
-                    NAME to supply.name,
-                    CONTACT_NUMBER to supply.phoneNumber,
-                    IS_WHATS_APP_NUMBER to supply.isWhatsAppNumber,
-                    SUPPLY_QUANTITY to supply.quantity,
-                    SUBMIT_TIME to supply.submitTime,
-                    UPDATE_TIME to supply.updateTime,
-                    LATITUDE to supply.latitude,
-                    LONGITUDE to supply.longitude,
-                    NOTE to supply.note
-                )
-            )
+            .add(supply.toMap())
 
         return Tasks.await(task, 20, TimeUnit.SECONDS)
+    }
+
+    override fun updateSupply(supply: Supply) {
+        supply.id ?: throw Exception("Supply ID can't be null")
+
+        val task = firestore
+            .collection(SUPPLY)
+            .document(supply.id.toString())
+            .update(supply.toMap())
+
+        Tasks.await(task, 20, TimeUnit.SECONDS)
     }
 
     override fun findSupply(filter: Map<String, String>?): List<Supply> {
@@ -67,6 +67,21 @@ class FirebaseSupplyDataSource @Inject constructor(
             submitTime = snapshot[SUBMIT_TIME] as Long? ?: 0,
             updateTime = snapshot[UPDATE_TIME] as Long? ?: 0,
             verified = snapshot[IS_VERIFIED] as Boolean? ?: false
+        )
+    }
+
+    private fun Supply.toMap(): Map<String, Any> {
+        return mapOf(
+            SUPPLIER_USER_ID to supplierUserId,
+            NAME to name,
+            CONTACT_NUMBER to phoneNumber,
+            IS_WHATS_APP_NUMBER to isWhatsAppNumber,
+            SUPPLY_QUANTITY to quantity,
+            SUBMIT_TIME to submitTime,
+            UPDATE_TIME to updateTime as Long,
+            LATITUDE to latitude,
+            LONGITUDE to longitude,
+            NOTE to note
         )
     }
 
