@@ -60,4 +60,7 @@ dependencies {
 
     // Timber
     api 'com.jakewharton.timber:timber:4.7.1'
+
+    // Geo hashing helper lib
+    implementation 'com.firebase:geofire-android-common:3.1.0'
 }
