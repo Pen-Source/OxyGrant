@@ -44,6 +44,8 @@ data class Supply(
     val latitude: Double,
     val longitude: Double,
 
+    val geoHash: String,
+
     /**
      * Additional info
      */
