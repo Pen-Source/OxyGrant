@@ -55,6 +55,7 @@ class SubmitViewModel @AssistedInject constructor(
                     ?: 0.0, // TODO: 04-06-2021 Handle number format exception
                 latitude = 0.0,
                 longitude = 0.0,
+                geoHash = "",
                 submitTime = timeUtil.getCurrentTime()
             )
 

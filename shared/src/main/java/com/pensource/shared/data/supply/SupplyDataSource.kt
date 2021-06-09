@@ -74,6 +74,7 @@ class FirebaseSupplyDataSource @Inject constructor(
             quantity = snapshot[SUPPLY_QUANTITY] as Double? ?: 0.0,
             latitude = snapshot[LATITUDE] as Double? ?: 0.0,
             longitude = snapshot[LONGITUDE] as Double? ?: 0.0,
+            geoHash = snapshot[GEO_HASH] as String? ?: "",
             note = snapshot[NOTE] as String? ?: "",
             submitTime = snapshot[SUBMIT_TIME] as Long? ?: 0,
             updateTime = snapshot[UPDATE_TIME] as Long? ?: 0,
@@ -92,6 +93,7 @@ class FirebaseSupplyDataSource @Inject constructor(
             UPDATE_TIME to updateTime,
             LATITUDE to latitude,
             LONGITUDE to longitude,
+            GEO_HASH to geoHash,
             NOTE to note
         )
     }
@@ -108,6 +110,7 @@ class FirebaseSupplyDataSource @Inject constructor(
         const val UPDATE_TIME = "updateTime"
         const val LATITUDE = "latitude"
         const val LONGITUDE = "longitude"
+        const val GEO_HASH = "geohash"
         const val NOTE = "note"
         const val IS_VERIFIED = "isVerified"
     }
