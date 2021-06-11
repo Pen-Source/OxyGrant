@@ -55,4 +55,9 @@
             app:argType="com.pensource.model.Supply"
             app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_choose_location"
+        android:name="com.pensource.oxygrant.ui.map.ChooseLocationFragment"
+        android:label="fragment_choose_location"
+        tools:layout="@layout/fragment_choose_location" />
 </navigation>

@@ -40,5 +40,9 @@ class HomeFragment : Fragment() {
         homeViewModel.actionFindSupply.observe(viewLifecycleOwner, EventObserver {
             findNavController().navigate(it)
         })
+
+        binding.chooseLocationButton.setOnClickListener {
+            findNavController().navigate(R.id.navigation_choose_location)
+        }
     }
 }
