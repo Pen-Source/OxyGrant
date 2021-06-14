@@ -1,7 +1,11 @@
 package com.pensource.oxygrant.ui.map
 
 import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,25 +13,26 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.pensource.oxygrant.R
+import com.pensource.oxygrant.databinding.FragmentChooseLocationBinding
 
 class ChooseLocationFragment : Fragment() {
 
-    private val callback = OnMapReadyCallback { googleMap ->
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
+    private lateinit var binding: FragmentChooseLocationBinding
+
+    private lateinit var locationManager: LocationManager
+
+    private lateinit var googleMap: GoogleMap
+
+    private val callback = OnMapReadyCallback {
+        googleMap = it
+
         val sydney = LatLng(-34.0, 151.0)
         googleMap.addMarker(
             MarkerOptions()
@@ -36,24 +41,36 @@ class ChooseLocationFragment : Fragment() {
                 .title("Marker in Sydney")
         )
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+    }
 
-        if (hasLocationPermission()) {
-//            googleMap.isMyLocationEnabled = true
-        }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        locationManager =
+            requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_choose_location, container, false)
+    ): View {
+        binding = FragmentChooseLocationBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+
+        binding.myLocationImageView.setOnClickListener {
+            if (hasLocationPermission()) {
+                if (isGpsEnabled()) {
+
+                }
+            }
+        }
     }
 
     private fun hasLocationPermission(): Boolean {
@@ -64,5 +81,24 @@ class ChooseLocationFragment : Fragment() {
             requireContext(),
             Manifest.permission.ACCESS_COARSE_LOCATION
         ) != PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun isGpsEnabled(): Boolean {
+        return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+            locationManager.isLocationEnabled
+        } else {
+            locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun getCurrentLocation(
+        locationManager: LocationManager,
+        location: (loc: Location) -> Unit
+    ) {
+        loop@ locationManager.allProviders.forEach {
+            val x = locationManager.getLastKnownLocation(it)
+
+        }
     }
 }
