@@ -2,4 +2,4 @@
 Oxygen supply coordination Android Application
 
 ## Setup
-Connect Firebase
+Add google-service.json from your Firebase project.
